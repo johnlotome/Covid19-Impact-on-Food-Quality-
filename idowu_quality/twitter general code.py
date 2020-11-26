@@ -175,12 +175,12 @@ def get_tweets(screen_names):
         
         tweets = tweepy.Cursor(api.user_timeline, screen_name = name, since = '2019-10-01', wait_on_rate_limit=True).items(1000)
         for tweet in tweets:
-            user_ = user.screen_name
+            user_ = tweet.user.screen_name
             time = tweet.created_at
             text_ = tweet.text
             fav = tweet.favorite_count
             retweet = tweet.retweet_count
-            description = tweet.description
+            description_ = tweet.user.description
             lang = tweet.lang
             
             
@@ -189,7 +189,7 @@ def get_tweets(screen_names):
             texts.append(text_)
             favs.append(fav)
             retweets.append(retweet)
-            description.append(description)
+            description.append(description_)
             langs.append(lang)
             
         a_user.append(user)
